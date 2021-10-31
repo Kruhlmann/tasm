@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require "tasm/tasm"
+
+if ARGV.length < 2
+  puts "Usage: tasm <COMMAND> [ARGS]"
+  puts "  COMMANDS"
+  puts "  run - run the program in an emulated stack"
+  puts "  build - build x86_64 assembly of program"
+  exit 1
+else
+  command = ARGV[0]
+  filename = ARGV[1]
+
+  if command == "run"
+    interpret_program(filename)
+  elsif command == "build"
+    compile_program(filename, "output")
+  else
+    puts "No such command '#{command}'"
+  end
+end

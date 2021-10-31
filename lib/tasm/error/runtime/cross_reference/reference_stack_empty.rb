@@ -1,0 +1,2 @@
+class ReferenceStackEmpty < RuntimeError
+end

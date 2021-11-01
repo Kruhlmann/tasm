@@ -18,4 +18,11 @@ class IfOperation < ArgOperation
         jz addr_#{@argument}
     EOS
   end
+
+  def nodejs_instruction
+    <<~EOS
+      a = stack.pop();
+      if (a === 1) {
+    EOS
+  end
 end

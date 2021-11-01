@@ -9,4 +9,10 @@ class EndIfOperation < Operation
       addr_#{operation_index}:
     EOS
   end
+
+  def nodejs_instruction
+    <<~EOS
+      }
+    EOS
+  end
 end

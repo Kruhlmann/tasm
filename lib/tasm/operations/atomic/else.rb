@@ -10,4 +10,10 @@ class ElseOperation < ArgOperation
       addr_#{operation_index + 1}:
     EOS
   end
+
+  def nodejs_instruction
+    <<~EOS
+      } else {
+    EOS
+  end
 end

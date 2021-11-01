@@ -20,4 +20,12 @@ class EqualityOperation < Operation
       push rcx
     EOS
   end
+
+  def nodejs_instruction
+    <<~EOS
+      a = stack.pop();
+      b = stack.pop();
+      stack.push(a == b ? 1 : 0);
+    EOS
+  end
 end

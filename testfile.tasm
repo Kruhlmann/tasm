@@ -1,0 +1,6 @@
+1 2 + 3 = if
+    100 dump
+else
+    200 dump
+endif
+300 dump

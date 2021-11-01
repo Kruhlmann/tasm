@@ -7,6 +7,10 @@ class Operation
     "#{comment}\n#{asm_instruction(operation_index)}"
   end
 
+  def as_nodejs(operation_index)
+    "//#{comment}\n#{nodejs_instruction}"
+  end
+
   def execute(stack, instruction_ptr)
     raise "'execute' not implemented"
   end

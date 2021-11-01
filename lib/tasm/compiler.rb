@@ -7,7 +7,7 @@ class Compiler
     program = Program.new
     instructions = lexer.lex(source, context)
     program.set_instructions(instructions)
-    asm_source = program.compile()
+    asm_source = program.compile
     write_asm_source(asm_source, output_file)
     invoke_nasm_compilation(output_file)
   end

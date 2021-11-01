@@ -17,4 +17,12 @@ class SubtractOperation < Operation
       push rax
     EOS
   end
+
+  def nodejs_instruction
+    <<~EOS
+      b = stack.pop();
+      a = stack.pop();
+      stack.push(b - a);
+    EOS
+  end
 end

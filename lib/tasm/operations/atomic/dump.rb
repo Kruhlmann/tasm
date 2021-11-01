@@ -13,4 +13,11 @@ class DumpOperation < Operation
       call dump
     EOS
   end
+
+  def nodejs_instruction
+    <<~EOS
+      a = stack.pop();
+      console.log(a);
+    EOS
+  end
 end

@@ -12,4 +12,10 @@ class PushOperation < ArgOperation
       push #{@argument}
     EOS
   end
+
+  def nodejs_instruction
+    <<~EOS
+      stack.push(#{@argument});
+    EOS
+  end
 end

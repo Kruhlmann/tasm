@@ -21,11 +21,19 @@ class EqualityOperation < Operation
     EOS
   end
 
-  def nodejs_instruction
+  def nodejs_instruction(operation_index)
     <<~EOS
-      a = stack.pop();
-      b = stack.pop();
-      stack.push(a == b ? 1 : 0);
+      const b_#{operation_index} = stack.pop();
+      const a_#{operation_index} = stack.pop();
+      stack.push(a_#{operation_index} == b_#{operation_index} ? 1 : 0);
+    EOS
+  end
+
+  def lua_instruction(operation_index)
+    <<~EOS
+      local b_#{operation_index} = table.remove(stack, 1)
+      local a_#{operation_index} = table.remove(stack, 1)
+      if a_#{operation_index} == b_#{operation_index} then table.insert(stack, 1) else table.insert(stack, 0) end
     EOS
   end
 end

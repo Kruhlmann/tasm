@@ -3,14 +3,6 @@ class Operation
     raise "Not implemented"
   end
 
-  def as_asm(operation_index)
-    "#{comment}\n#{asm_instruction(operation_index)}"
-  end
-
-  def as_nodejs(operation_index)
-    "//#{comment}\n#{nodejs_instruction}"
-  end
-
   def execute(stack, instruction_ptr)
     raise "'execute' not implemented"
   end
@@ -19,7 +11,7 @@ class Operation
     raise "'asm_instruction' Not implemented"
   end
 
-  def comment
-    ";; #{self.class.name}"
+  def nodejs_instruction(operation_index)
+    raise "'nodejs_instruction' Not implemented"
   end
 end

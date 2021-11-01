@@ -13,9 +13,15 @@ class PushOperation < ArgOperation
     EOS
   end
 
-  def nodejs_instruction
+  def nodejs_instruction(operation_index)
     <<~EOS
       stack.push(#{@argument});
+    EOS
+  end
+
+  def lua_instruction(operation_index)
+    <<~EOS
+      table.insert(stack, #{@argument});
     EOS
   end
 end

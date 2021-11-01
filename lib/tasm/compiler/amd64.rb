@@ -12,7 +12,7 @@ class AMD64Compiler < Compiler
 
   def translate_amd64(instructions)
     xref_instructions = CrossReferencer.new.cross_reference_instructions(instructions)
-    source = xref_instructions.each_with_index.map { |operation, operation_index| operation.as_asm(operation_index) }.join("")
+    source = xref_instructions.each_with_index.map { |operation, operation_index| operation.asm_instruction(operation_index) }.join("")
     return <<~EOS
              global _start
              segment .text

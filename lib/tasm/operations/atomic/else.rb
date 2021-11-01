@@ -11,9 +11,15 @@ class ElseOperation < ArgOperation
     EOS
   end
 
-  def nodejs_instruction
+  def nodejs_instruction(operation_index)
     <<~EOS
       } else {
+    EOS
+  end
+
+  def lua_instruction(operation_index)
+    <<~EOS
+      else
     EOS
   end
 end

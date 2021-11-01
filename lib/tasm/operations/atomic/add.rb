@@ -18,11 +18,19 @@ class AddOperation < Operation
     EOS
   end
 
-  def nodejs_instruction
+  def nodejs_instruction(operation_index)
     <<~EOS
-      b = stack.pop();
-      a = stack.pop();
-      stack.push(b + a);
+      const b_#{operation_index} = stack.pop();
+      const a_#{operation_index} = stack.pop();
+      stack.push(b_#{operation_index} + a_#{operation_index});
+    EOS
+  end
+
+  def lua_instruction(operation_index)
+    <<~EOS
+      local b_#{operation_index} = table.remove(stack, 1)
+      local a_#{operation_index} = table.remove(stack, 1)
+      table.insert(stack, a_#{operation_index} + b_#{operation_index})
     EOS
   end
 end

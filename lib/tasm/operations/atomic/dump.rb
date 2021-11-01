@@ -14,10 +14,17 @@ class DumpOperation < Operation
     EOS
   end
 
-  def nodejs_instruction
+  def nodejs_instruction(operation_index)
     <<~EOS
-      a = stack.pop();
-      console.log(a);
+      const a_#{operation_index} = stack.pop();
+      console.log(a_#{operation_index});
+    EOS
+  end
+
+  def lua_instruction(operation_index)
+    <<~EOS
+      local a_#{operation_index} = table.remove(stack, 1)
+      print(a_#{operation_index});
     EOS
   end
 end

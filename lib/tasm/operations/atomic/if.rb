@@ -19,10 +19,17 @@ class IfOperation < ArgOperation
     EOS
   end
 
-  def nodejs_instruction
+  def nodejs_instruction(operation_index)
     <<~EOS
-      a = stack.pop();
-      if (a === 1) {
+      a_#{operation_index} = stack.pop();
+      if (a_#{operation_index} === 1) {
+    EOS
+  end
+
+  def lua_instruction(operation_index)
+    <<~EOS
+      local a_#{operation_index} = table.remove(stack, 1)
+      if a_#{operation_index} == 1 then
     EOS
   end
 end

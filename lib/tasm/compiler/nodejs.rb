@@ -11,10 +11,10 @@ class NodeJSCompiler < Compiler
 
   def translate_nodejs(instructions)
     xref_instructions = CrossReferencer.new.cross_reference_instructions(instructions)
-    source = xref_instructions.each_with_index.map { |operation, operation_index| operation.as_nodejs(operation_index) }.join("")
+    source = xref_instructions.each_with_index.map { |operation, operation_index| operation.nodejs_instruction(operation_index) }.join("")
     return <<~eos
             let stack = [];
-             #{source}
+            #{source}
            eos
   end
 

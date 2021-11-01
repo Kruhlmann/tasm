@@ -10,9 +10,15 @@ class EndIfOperation < Operation
     EOS
   end
 
-  def nodejs_instruction
+  def nodejs_instruction(operation_index)
     <<~EOS
       }
+    EOS
+  end
+
+  def lua_instruction(operation_index)
+    <<~EOS
+      end
     EOS
   end
 end

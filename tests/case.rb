@@ -8,7 +8,7 @@ class TestCase
   end
 
   def self.execute_source
-    AMD64Compiler.new.compile(self.source, output_binary, 640_000, "#{self.name}")
+    AMD64Compiler.new.compile(self.source, output_binary, self.mem_size, "#{self.name}")
     %x[#{capture_exit_code_script} #{output_binary} #{output_result} #{output_exit_code}]
   end
 
@@ -32,6 +32,10 @@ class TestCase
   def self.compare_exit_code
     result = File.open(self.output_exit_code, "r").read
     assert(expected_exit_code.to_s, result.strip)
+  end
+
+  def self.mem_size
+    640_000
   end
 
   def self.expected_exit_code

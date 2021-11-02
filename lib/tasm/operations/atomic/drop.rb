@@ -1,18 +1,13 @@
 require "tasm/operations/operation"
 
-class CloneOperation < Operation
+class DropOperation < Operation
   def execute(stack, instruction_ptr)
-    a = stack.pop()
-    stack.append(a)
-    stack.append(a)
-    return instruction_ptr + 1
+    stack.pop()
   end
 
   def asm_instruction(operation_index)
     <<~EOS
       pop rax
-      push rax
-      push rax
     EOS
   end
 

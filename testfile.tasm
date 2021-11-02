@@ -1,6 +1,0 @@
-mem 0 + 97 write
-mem 1 + 98 write
-mem 2 + 99 write
-mem 0 + clone load 1 + write
-mem 1 + clone load 1 + write
-mem 2 + clone load 1 + write

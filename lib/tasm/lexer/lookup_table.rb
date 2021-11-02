@@ -10,9 +10,15 @@ require "tasm/operations/atomic/endif"
 require "tasm/operations/atomic/else"
 require "tasm/operations/atomic/while"
 require "tasm/operations/atomic/mem"
+require "tasm/operations/atomic/drop"
 require "tasm/operations/atomic/clone"
+require "tasm/operations/atomic/clone2"
 require "tasm/operations/atomic/write"
 require "tasm/operations/atomic/load"
+require "tasm/operations/atomic/lshift"
+require "tasm/operations/atomic/rshift"
+require "tasm/operations/atomic/bwand"
+require "tasm/operations/atomic/bwor"
 require "tasm/operations/atomic/syscall3"
 require "tasm/operations/atomic/syscall1"
 require "tasm/operations/unreferenced/do"
@@ -27,7 +33,13 @@ class LexerOperationLookupTable
     "=" => EqualityOperation,
     "<" => LessThanOperation,
     ">" => GreaterThanOperation,
+    ">>" => RightBinaryShiftOperation,
+    "<<" => LeftBinaryShiftOperation,
+    "&" => BitwiseAndOperation,
+    "|" => BitwiseOrOperation,
     "clone" => CloneOperation,
+    "2clone" => Clone2Operation,
+    "drop" => DropOperation,
     "if" => UnreferencedIfOperation,
     "else" => UnreferencedElseOperation,
     "endif" => EndIfOperation,

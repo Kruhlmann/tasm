@@ -1,0 +1,17 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v1
+      - name: dependencies
+        run: |
+          sudo apt update
+          sudo apt install -qq nasm
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6'
+      - name: test
+        run: |
+          sh ./scripts/run_tests

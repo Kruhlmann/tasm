@@ -11,6 +11,9 @@ class DoOperation < ArgOperation
 
   def asm_instruction(operation_index)
     <<~EOS
+        pop rax
+        test rax, rax
+        jz addr_#{@argument}
     EOS
   end
 

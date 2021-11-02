@@ -7,6 +7,7 @@ class WhileOperation < Operation
 
   def asm_instruction(operation_index)
     <<~EOS
+      addr_#{operation_index}:
     EOS
   end
 

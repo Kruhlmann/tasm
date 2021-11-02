@@ -7,7 +7,8 @@ class EndWhileOperation < ArgOperation
 
   def asm_instruction(operation_index)
     <<~EOS
-      addr_#{operation_index}:
+      jmp addr_#{@argument}
+      addr_#{operation_index + 1}:
     EOS
   end
 

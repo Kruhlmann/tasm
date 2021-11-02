@@ -5,6 +5,7 @@ require "tasm/operations/atomic/dump"
 require "tasm/operations/atomic/push"
 require "tasm/operations/atomic/equality"
 require "tasm/operations/atomic/if"
+require "tasm/operations/atomic/gt"
 require "tasm/operations/atomic/endif"
 require "tasm/operations/atomic/else"
 require "tasm/operations/atomic/while"
@@ -26,6 +27,9 @@ class Lexer
     end
     if symbol == "="
       return EqualityOperation.new
+    end
+    if symbol == ">"
+      return GreaterThanOperation.new
     end
     if symbol == "if"
       return UnreferencedIfOperation.new

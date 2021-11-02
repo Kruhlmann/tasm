@@ -19,6 +19,8 @@ require "tasm/operations/atomic/lshift"
 require "tasm/operations/atomic/rshift"
 require "tasm/operations/atomic/bwand"
 require "tasm/operations/atomic/bwor"
+require "tasm/operations/atomic/swap"
+require "tasm/operations/atomic/over"
 require "tasm/operations/atomic/syscall3"
 require "tasm/operations/atomic/syscall1"
 require "tasm/operations/unreferenced/do"
@@ -37,9 +39,11 @@ class LexerOperationLookupTable
     "<<" => LeftBinaryShiftOperation,
     "&" => BitwiseAndOperation,
     "|" => BitwiseOrOperation,
+    "swap" => SwapOperation,
     "clone" => CloneOperation,
     "2clone" => Clone2Operation,
     "drop" => DropOperation,
+    "over" => OverOperation,
     "if" => UnreferencedIfOperation,
     "else" => UnreferencedElseOperation,
     "endif" => EndIfOperation,

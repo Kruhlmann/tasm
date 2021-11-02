@@ -6,8 +6,7 @@ class CloneOperation < Operation
     a = stack.pop()
     stack.append(a)
     stack.append(a)
-    instruction_ptr += 1
-    return instruction_ptr
+    return instruction_ptr + 1
   end
 
   def asm_instruction(operation_index)

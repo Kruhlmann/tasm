@@ -2,6 +2,7 @@ require "tasm/operations/arg_operation"
 
 class ElseOperation < ArgOperation
   def execute(stack, instruction_ptr)
+    return instruction_ptr + 1
   end
 
   def asm_instruction(operation_index)

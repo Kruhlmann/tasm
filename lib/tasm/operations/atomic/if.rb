@@ -4,11 +4,9 @@ class IfOperation < ArgOperation
   def execute(stack, instruction_ptr)
     a = stack.pop()
     if a != 1
-      instruction_ptr = @argument
-    else
-      instruction_ptr += 1
+      return @argument
     end
-    return instruction_ptr
+    return instruction_ptr += 1
   end
 
   def asm_instruction(operation_index)

@@ -1,7 +1,8 @@
-require "tasm/operations/operation"
+require "tasm/operations/arg_operation"
 
-class EndWhileOperation < Operation
+class EndWhileOperation < ArgOperation
   def execute(stack, instruction_ptr)
+    return @argument
   end
 
   def asm_instruction(operation_index)

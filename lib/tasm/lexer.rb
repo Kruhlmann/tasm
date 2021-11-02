@@ -8,13 +8,13 @@ require "tasm/operations/atomic/if"
 require "tasm/operations/atomic/gt"
 require "tasm/operations/atomic/lt"
 require "tasm/operations/atomic/endif"
-require "tasm/operations/atomic/do"
 require "tasm/operations/atomic/else"
 require "tasm/operations/atomic/while"
 require "tasm/operations/atomic/clone"
+require "tasm/operations/unreferenced/do"
+require "tasm/operations/unreferenced/wend"
 require "tasm/operations/unreferenced/if"
 require "tasm/operations/unreferenced/else"
-require "tasm/operations/unreferenced/while"
 
 class Lexer
   def operation_from_symbol(symbol, context, line_number, current_column)
@@ -36,14 +36,17 @@ class Lexer
     if symbol == ">"
       return GreaterThanOperation.new
     end
+    if symbol == "while"
+      return WhileOperation.new
+    end
     if symbol == "if"
       return UnreferencedIfOperation.new
     end
-    if symbol == "while"
-      return UnreferencedWhileOperation.new
+    if symbol == "wend"
+      return UnreferencedEndWhileOperation.new
     end
     if symbol == "do"
-      return DoOperation.new
+      return UnreferencedDoOperation.new
     end
     if symbol == "else"
       return UnreferencedElseOperation.new

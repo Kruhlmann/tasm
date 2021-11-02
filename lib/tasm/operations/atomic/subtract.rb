@@ -5,8 +5,7 @@ class SubtractOperation < Operation
     a = stack.pop
     b = stack.pop
     stack.append(b - a)
-    instruction_ptr += 1
-    return instruction_ptr
+    return instruction_ptr += 1
   end
 
   def asm_instruction(operation_index)

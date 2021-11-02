@@ -1,4 +1,4 @@
-require "tasm/lexer"
+require "tasm/lexer/lexer"
 require "tasm/cross_referencer"
 
 class Interpreter

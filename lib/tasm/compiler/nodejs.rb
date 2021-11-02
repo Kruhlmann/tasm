@@ -1,8 +1,7 @@
-require "tasm/lexer"
 require "tasm/compiler/compiler"
 
 class NodeJSCompiler < Compiler
-  def compile(source, output_file, context = "anonymous")
+  def compile(source, output_file, memory_size, context = "anonymous")
     instructions = load_instructions(source, context)
     js_source = translate_nodejs(instructions)
     write_js_source(js_source, output_file)

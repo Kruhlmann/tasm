@@ -1,8 +1,7 @@
-require "tasm/lexer"
 require "tasm/compiler/compiler"
 
 class LuaCompiler < Compiler
-  def compile(source, output_file, context = "anonymous")
+  def compile(source, output_file, memory_size, context = "anonymous")
     instructions = load_instructions(source, context)
     lua_source = translate_lua(instructions)
     write_lua_source(lua_source, output_file)

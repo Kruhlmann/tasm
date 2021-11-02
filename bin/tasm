@@ -22,9 +22,10 @@ else
     interpreter.run(source, ARGV[1])
   elsif command == "build"
     compiler = ARGV[1]
-    source = File.open(ARGV[2], "r").read
+    memsize = ARGV[2].to_i
+    source = File.open(ARGV[3], "r").read
     compiler = CompilerFactory.new.from_str(compiler)
-    compiler.compile(source, "output", ARGV[2])
+    compiler.compile(source, "output", memsize, ARGV[3])
   else
     puts "No such command '#{command}'"
   end

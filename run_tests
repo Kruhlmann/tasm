@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+for f in tests/test_*.rb; do
+    ruby -Ilib "$f"
+done

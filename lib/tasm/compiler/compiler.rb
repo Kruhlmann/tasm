@@ -1,7 +1,7 @@
-require "tasm/lexer"
+require "tasm/lexer/lexer"
 
 class Compiler
-  def compile(source, output_file, context = "anonymous")
+  def compile(source, output_file, memory_size, context = "anonymous")
     raise "`compile` not implemented"
   end
 

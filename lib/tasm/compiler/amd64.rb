@@ -1,15 +1,15 @@
-require "tasm/lexer"
 require "tasm/compiler/compiler"
+require "tasm/cross_referencer"
 
 class AMD64Compiler < Compiler
-  def compile(source, output_file, context = "anonymous")
+  def compile(source, output_file, memory_size, context = "anonymous")
     instructions = load_instructions(source, context)
-    asm_source = translate_amd64(instructions)
+    asm_source = translate_amd64(instructions, memory_size)
     write_asm_source(asm_source, output_file)
     invoke_nasm_compilation(output_file)
   end
 
-  def translate_amd64(instructions)
+  def translate_amd64(instructions, memory_size)
     xref_instructions = CrossReferencer.new.cross_reference_instructions(instructions)
     source = xref_instructions.each_with_index.map { |operation, operation_index| operation.asm_instruction(operation_index) }.join("")
     return <<~EOS
@@ -55,6 +55,8 @@ class AMD64Compiler < Compiler
              mov rax, 60
              mov rdi, 0
              syscall
+             segment .bss
+             mem: resb #{memory_size}
            EOS
   end
 
@@ -67,5 +69,6 @@ class AMD64Compiler < Compiler
   def invoke_nasm_compilation(filename)
     %x[nasm -felf64 #{filename}.asm]
     %x[ld -o #{filename} #{filename}.o]
+    %x[chmod u+x #{filename}]
   end
 end

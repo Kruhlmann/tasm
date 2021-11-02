@@ -1,6 +1,6 @@
 require "tasm/operations/operation"
 
-class DumpOperation < Operation
+class PutOperation < Operation
   def execute(stack, instruction_ptr)
     puts stack.pop
     return instruction_ptr + 1

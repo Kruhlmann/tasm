@@ -1,4 +1,5 @@
 require "tasm/compiler/amd64"
+require_relative "./assertion_error"
 
 class TestCase
   def self.execute
@@ -14,25 +15,23 @@ class TestCase
   def self.compare_result
     compare_output
     compare_exit_code
-    puts "test case #{self.name} passed"
+    puts "\e[42mPASS\e[0m #{self.name} #{__FILE__}"
   end
 
   def self.compare_output
     result = File.open(self.output_result, "r").read
-    if expected != result
-      puts "Expected:\n#{expected}"
-      puts "Actual:\n#{result}"
-      raise "test case #{self.name} failed"
+    assert(expected, result)
+  end
+
+  def self.assert(expected, actual)
+    if expected != actual
+      raise AssertionError.new("\e[41mFAIL\e[0m #{self.name} #{__FILE__}", expected, actual)
     end
   end
 
   def self.compare_exit_code
     result = File.open(self.output_exit_code, "r").read
-    if expected_exit_code.to_s != result.strip
-      puts "Expected exit code:\n#{expected_exit_code}"
-      puts "Actual exit code:\n#{result}"
-      raise "test case #{self.name} failed"
-    end
+    assert(expected_exit_code.to_s, result.strip)
   end
 
   def self.expected_exit_code
@@ -56,10 +55,10 @@ class TestCase
   end
 
   def self.source
-    raise "test case #{self.name} has no source"
+    raise "test case #{self.name} #{__FILE__} has no `source`"
   end
 
   def self.expected
-    raise "test case #{self.name} has no expected"
+    raise "test case #{self.name} #{__FILE__} has no `expected`"
   end
 end

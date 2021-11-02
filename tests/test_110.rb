@@ -5,9 +5,12 @@ class Rule110TestCase < TestCase
     <<~EOS
       mem 28 + 1 write
 
-      0 while clone 28 < do
-         0 while clone 30 < do
-            clone mem + load if
+      0 while clone 28 <
+      do
+         0 while clone 30 <
+         do
+            clone mem + load
+            if
                mem 30 + 35 write
             else
                mem 30 + 32 write
@@ -20,11 +23,11 @@ class Rule110TestCase < TestCase
          mem 30 + 10 write
          1 mem 30 + 1 1 syscall3
 
-         mem     load 1 <<
-         mem 1 + load
-         |
+         mem 0 + load 1 <<
+         mem 1 + load    |
 
-         1 while clone 28 < do
+         1 while clone 28 <
+         do
             swap 1 << 7 &
             over mem + 1 + load |
             2clone 110 swap >> 1 &

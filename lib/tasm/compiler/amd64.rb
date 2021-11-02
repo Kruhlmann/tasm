@@ -1,5 +1,4 @@
 require "tasm/lexer"
-require "tasm/program"
 require "tasm/compiler/compiler"
 
 class AMD64Compiler < Compiler

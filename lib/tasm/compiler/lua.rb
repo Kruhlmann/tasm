@@ -1,5 +1,4 @@
 require "tasm/lexer"
-require "tasm/program"
 require "tasm/compiler/compiler"
 
 class LuaCompiler < Compiler
@@ -13,8 +12,8 @@ class LuaCompiler < Compiler
     xref_instructions = CrossReferencer.new.cross_reference_instructions(instructions)
     source = xref_instructions.each_with_index.map { |operation, operation_index| operation.lua_instruction(operation_index) }.join("")
     return <<~eos
-            local stack = {};
-            #{source}
+             local stack = {};
+             #{source}
            eos
   end
 

@@ -1,5 +1,4 @@
 require "tasm/lexer"
-require "tasm/program"
 require "tasm/compiler/compiler"
 
 class NodeJSCompiler < Compiler
@@ -13,8 +12,8 @@ class NodeJSCompiler < Compiler
     xref_instructions = CrossReferencer.new.cross_reference_instructions(instructions)
     source = xref_instructions.each_with_index.map { |operation, operation_index| operation.nodejs_instruction(operation_index) }.join("")
     return <<~eos
-            let stack = [];
-            #{source}
+             let stack = [];
+             #{source}
            eos
   end
 

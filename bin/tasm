@@ -1,26 +1,30 @@
 #!/usr/bin/env ruby
 
-require "tasm/tasm"
+require "tasm/interpreter"
+require "tasm/compiler/factory"
 
 if ARGV.length < 2
   puts "Usage: tasm <COMMAND> [ARGS]"
   puts "  COMMANDS"
-  puts "  run - run the program in an emulated stack"
-  puts "  build <TARGET> - compile/transpile program"
+  puts "  run <FILE> - run the program in an emulated stack"
+  puts "  build <TARGET> <FILE> - compile/transpile program"
   puts "    TARGETS"
-  puts "      node - nodejs JS"
+  puts "      node - node JS"
   puts "      amd64 - x86_64 assembly"
+  puts "      lua - lua"
   exit 1
 else
   command = ARGV[0]
 
   if command == "run"
-    filename = ARGV[1]
-    interpret_program(filename)
+    source = File.open(ARGV[1], "r").read
+    interpreter = Interpreter.new
+    interpreter.run(source, ARGV[1])
   elsif command == "build"
     compiler = ARGV[1]
-    filename = ARGV[2]
-    compile_program(filename, "output", compiler)
+    source = File.open(ARGV[2], "r").read
+    compiler = CompilerFactory.new.from_str(compiler)
+    compiler.compile(source, "output", ARGV[2])
   else
     puts "No such command '#{command}'"
   end

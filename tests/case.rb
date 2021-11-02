@@ -25,7 +25,7 @@ class TestCase
 
   def self.assert(expected, actual)
     if expected != actual
-      raise AssertionError.new("\e[41mFAIL\e[0m #{self.name} #{__FILE__}", expected, actual)
+      raise AssertionError.new("#{self.name}", expected, actual)
     end
   end
 

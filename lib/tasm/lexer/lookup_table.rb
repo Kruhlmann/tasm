@@ -13,6 +13,8 @@ require "tasm/operations/atomic/mem"
 require "tasm/operations/atomic/clone"
 require "tasm/operations/atomic/write"
 require "tasm/operations/atomic/load"
+require "tasm/operations/atomic/syscall3"
+require "tasm/operations/atomic/syscall1"
 require "tasm/operations/unreferenced/do"
 require "tasm/operations/unreferenced/wend"
 require "tasm/operations/unreferenced/if"
@@ -36,6 +38,8 @@ class LexerOperationLookupTable
     "mem" => MemOperation,
     "load" => LoadOperation,
     "write" => WriteOperation,
+    "syscall1" => Syscall1Operation,
+    "syscall3" => Syscall3Operation,
   }
 
   def self.lookup(operation_name)

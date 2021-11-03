@@ -47,6 +47,7 @@ class LexerOperationLookupTable
     "drop" => DropOperation,
     "over" => OverOperation,
     "if" => UnreferencedIfOperation,
+    "unless" => UnreferencedUnlessOperation,
     "else" => UnreferencedElseOperation,
     "endif" => EndIfOperation,
     "while" => WhileOperation,

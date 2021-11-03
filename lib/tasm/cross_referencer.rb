@@ -8,6 +8,8 @@ class CrossReferencer
     instructions.each_with_index do |operation, operation_index|
       if operation.is_a? UnreferencedIfOperation
         reference_stack.append(operation_index)
+      elsif operation.is_a? UnreferencedUnlessOperation
+        reference_stack.append(operation_index)
       elsif operation.is_a? WhileOperation
         reference_stack.append(operation_index)
       elsif operation.is_a? UnreferencedElseOperation

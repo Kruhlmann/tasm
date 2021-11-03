@@ -67,8 +67,12 @@ class AMD64Compiler < Compiler
   end
 
   def invoke_nasm_compilation(filename)
-    %x[nasm -felf64 #{filename}.asm]
-    %x[ld -o #{filename} #{filename}.o]
-    %x[chmod u+x #{filename}]
+    [
+      "nasm -felf64 #{filename}.asm",
+      "ld -o #{filename} #{filename}.o || exit 1",
+      "chmod u+x #{filename} || exit 1",
+    ].each do |instruction|
+      %x[#{instruction} || exit 1]
+    end
   end
 end

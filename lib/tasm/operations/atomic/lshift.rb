@@ -4,7 +4,7 @@ class LeftBinaryShiftOperation < Operation
   def execute(stack, instruction_ptr)
   end
 
-  def asm_instruction(operation_index)
+  def asm_instruction(operation_index, _)
     <<~EOS
       pop rcx
       pop rbx

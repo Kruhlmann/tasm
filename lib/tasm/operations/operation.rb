@@ -7,8 +7,12 @@ class Operation
     raise "'execute' not implemented"
   end
 
-  def asm_instruction(operation_index)
+  def asm_instruction(operation_index, literals = [])
     raise "'asm_instruction' Not implemented"
+  end
+
+  def asm_strings(strings)
+    strings
   end
 
   def nodejs_instruction(operation_index)

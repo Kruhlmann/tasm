@@ -11,7 +11,13 @@ class AMD64Compiler < Compiler
 
   def translate_amd64(instructions, memory_size)
     xref_instructions = CrossReferencer.new.cross_reference_instructions(instructions)
-    source = xref_instructions.each_with_index.map { |operation, operation_index| operation.asm_instruction(operation_index) }.join("")
+    literals = []
+    instructions_source = xref_instructions.each_with_index.map do |operation, operation_index|
+      operation.asm_instruction(operation_index, literals)
+    end.join("")
+    literals_source = literals.each_with_index.map do |literal, literal_index|
+      "lit_#{literal_index}: db #{literal.bytes.map { |b| "0x#{b.to_s(16)}" }.join(", ")}"
+    end.join("\n")
     return <<~EOS
              global _start
              segment .text
@@ -51,10 +57,12 @@ class AMD64Compiler < Compiler
              add  rsp, 40
              ret
              _start:
-             #{source}
+             #{instructions_source}
              mov rax, 60
              mov rdi, 0
              syscall
+             segment .data
+             #{literals_source}
              segment .bss
              mem: resb #{memory_size}
            EOS

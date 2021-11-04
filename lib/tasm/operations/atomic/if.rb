@@ -9,11 +9,11 @@ class IfOperation < ArgOperation
     return instruction_ptr += 1
   end
 
-  def asm_instruction(operation_index)
+  def asm_instruction(operation_index, _)
     <<~EOS
-        pop rax
-        test rax, rax
-        jz addr_#{@argument}
+      pop rax
+      test rax, rax
+      jz addr_#{@argument}
     EOS
   end
 

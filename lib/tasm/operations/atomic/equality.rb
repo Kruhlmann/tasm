@@ -8,7 +8,7 @@ class EqualityOperation < Operation
     return instruction_ptr + 1
   end
 
-  def asm_instruction(operation_index)
+  def asm_instruction(operation_index, _)
     <<~EOS
       mov rcx, 0
       mov rdx, 1

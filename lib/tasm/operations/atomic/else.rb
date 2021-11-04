@@ -5,7 +5,7 @@ class ElseOperation < ArgOperation
     return instruction_ptr + 1
   end
 
-  def asm_instruction(operation_index)
+  def asm_instruction(operation_index, _)
     <<~EOS
       jmp addr_#{@argument}
       addr_#{operation_index + 1}:

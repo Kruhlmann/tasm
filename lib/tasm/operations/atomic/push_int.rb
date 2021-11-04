@@ -1,6 +1,6 @@
 require "tasm/operations/arg_operation"
 
-class PushOperation < ArgOperation
+class PushIntOperation < ArgOperation
   def execute(stack, instruction_ptr)
     stack.append(@argument)
     return instruction_ptr += 1

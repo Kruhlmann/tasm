@@ -1,7 +1,6 @@
 require "tasm/operations/atomic/add"
 require "tasm/operations/atomic/subtract"
 require "tasm/operations/atomic/put"
-require "tasm/operations/atomic/push"
 require "tasm/operations/atomic/equality"
 require "tasm/operations/atomic/if"
 require "tasm/operations/atomic/unless"

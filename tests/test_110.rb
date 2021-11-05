@@ -26,7 +26,7 @@ class Rule110TestCase < TestCase
          1 while clone 28 <
          do
             swap 1 << 7 &
-            over mem + 1 + load |
+            over mem + ++ load |
             2clone 110 swap >> 1 &
             swap mem + swap write
             swap

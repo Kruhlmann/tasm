@@ -11,14 +11,11 @@ class Rule110TestCase < TestCase
          do
             clone mem + load
             if
-               mem 30 + 35 write
+               "#" 1 1 syscall3
             else
-               mem 30 + 32 write
+               " " 1 1 syscall3
             endif
-            1 mem 30 + 1 1 syscall3
-
-            1 +
-         wend drop
+          ++ wend drop
 
          mem 30 + 10 write
          1 mem 30 + 1 1 syscall3
@@ -33,11 +30,8 @@ class Rule110TestCase < TestCase
             2clone 110 swap >> 1 &
             swap mem + swap write
             swap
-
-            1 +
-         wend drop drop
-
-       1 + wend drop
+          ++ wend drop drop
+       ++ wend drop
     EOS
   end
 

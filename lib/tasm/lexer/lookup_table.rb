@@ -17,6 +17,8 @@ require "tasm/operations/atomic/write"
 require "tasm/operations/atomic/load"
 require "tasm/operations/atomic/lshift"
 require "tasm/operations/atomic/rshift"
+require "tasm/operations/atomic/increment"
+require "tasm/operations/atomic/decrement"
 require "tasm/operations/atomic/bwand"
 require "tasm/operations/atomic/bwor"
 require "tasm/operations/atomic/swap"
@@ -36,6 +38,8 @@ class LexerOperationLookupTable
     "=" => EqualityOperation,
     "<" => LessThanOperation,
     ">" => GreaterThanOperation,
+    "--" => DecrementOperation,
+    "++" => IncrementOperation,
     ">>" => RightBinaryShiftOperation,
     "<<" => LeftBinaryShiftOperation,
     "&" => BitwiseAndOperation,

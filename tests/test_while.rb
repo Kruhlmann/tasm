@@ -5,7 +5,7 @@ class WhileTestCase < TestCase
     <<~EOS
       10 while clone 0 > do
           clone put
-          1 -
+          --
       wend
       11 put
     EOS

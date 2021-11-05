@@ -2,8 +2,8 @@ require "tasm/operations/operation"
 
 class BitwiseOrOperation < Operation
   def execute(stack, instruction_ptr)
-    b = stack.pop()
-    a = stack.pop()
+    b = stack.pop
+    a = stack.pop
     stack.append(a | b)
     return instruction_ptr + 1
   end

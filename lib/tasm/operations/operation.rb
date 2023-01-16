@@ -1,13 +1,13 @@
 class Operation
   def execute
-    raise "Not implemented"
+    raise 'Not implemented'
   end
 
-  def execute(stack, instruction_ptr)
+  def execute(_stack, _instruction_ptr)
     raise "'execute' not implemented"
   end
 
-  def asm_instruction(operation_index, literals = [])
+  def asm_instruction(_operation_index, _literals = [])
     raise "'asm_instruction' Not implemented"
   end
 
@@ -15,7 +15,11 @@ class Operation
     strings
   end
 
-  def nodejs_instruction(operation_index)
+  def nodejs_instruction(_operation_index)
     raise "'nodejs_instruction' Not implemented"
+  end
+
+  def to_s
+    "#{self.class.name}<>"
   end
 end

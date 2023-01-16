@@ -7,7 +7,7 @@ if ARGV.length < 2
   puts "Usage: tasm <COMMAND> [ARGS]"
   puts "  COMMANDS"
   puts "  run <FILE> - run the program in an emulated stack"
-  puts "  build <TARGET> <FILE> - compile/transpile program"
+  puts "  build <TARGET> <MEMSIZE> <FILE> - compile/transpile program"
   puts "    TARGETS"
   puts "      node - node JS"
   puts "      amd64 - x86_64 assembly"

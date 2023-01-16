@@ -1,0 +1,9 @@
+SubOperation<do_push>
+LiteralOperation<do_push>
+PushIntOperation<1>
+MarineOperation<>
+SubOperation<main>
+LiteralOperation<main>
+CallOperation<do_push>
+PutOperation<>
+MarineOperation<>

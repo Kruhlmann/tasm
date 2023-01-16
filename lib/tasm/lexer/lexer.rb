@@ -1,11 +1,12 @@
-require "tasm/operations/atomic/push_int"
-require "tasm/operations/atomic/push_string"
-require "tasm/error/lexer/unknown_symbol"
-require "tasm/lexer/lookup_table"
-require "tasm/lexer/line_buffer"
+require 'tasm/operations/atomic/push_int'
+require 'tasm/operations/atomic/push_string'
+require 'tasm/operations/atomic/literal'
+require 'tasm/error/lexer/unknown_symbol'
+require 'tasm/lexer/lookup_table'
+require 'tasm/lexer/line_buffer'
 
 class Lexer
-  def operation_from_symbol_buffer(symbol_buffer, context, line_number)
+  def operation_from_symbol_buffer(symbol_buffer, _context, _line_number)
     lookup_result = LexerOperationLookupTable.lookup(symbol_buffer.read)
     if !lookup_result.nil?
       return lookup_result.new
@@ -14,7 +15,8 @@ class Lexer
     elsif symbol_buffer.read.start_with?('"') && symbol_buffer.read.end_with?('"')
       return PushStringOperation.new(symbol_buffer.read.delete_prefix('"').delete_suffix('"'))
     end
-    raise UnknownSymbolError.new(symbol_buffer.read, context, line_number + 1, symbol_buffer.column + 1)
+
+    LiteralOperation.new(symbol_buffer.read)
   end
 
   def lex_line_into_program(line, line_number, context, program)
@@ -84,7 +86,7 @@ class Lexer
     end
   end
 
-  def lex(source, context = "anonymous")
+  def lex(source, context = 'anonymous')
     program = []
     lines = source.split("\n")
     lines.each_with_index do |line, line_number|

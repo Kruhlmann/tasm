@@ -1,6 +1,8 @@
-10 while clone 0 > do
-clone put
-1 -
-wend
-11 put
+sub do_push
+    1
+marine
 
+sub main
+    do_push
+    put
+marine

@@ -1,0 +1,4 @@
+sub exit
+    swap
+    60 syscall1
+marine

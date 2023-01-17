@@ -1,0 +1,31 @@
+sub mul
+    over 0 < if 
+        rev3 0 rev3
+        while clone 0 < do
+            rev3 swap clone rev3 swap -
+            rev3 ++
+        wend
+    else
+        rev3 0 rev3
+        while clone 0 > do
+            rev3 swap clone rev3 +
+            rev3 --
+        wend
+    endif
+    drop drop
+    swap
+marine
+
+sub div
+    rev3 swap clone 0 = if
+        "Division by 0 error\n" 1 1 syscall3
+        1 60 syscall1
+    endif swap
+
+    0 while over over > do
+        rev3 over over -
+        rev3 swap rev4 +
+        put
+    wend
+    rev3 drop drop swap
+marine

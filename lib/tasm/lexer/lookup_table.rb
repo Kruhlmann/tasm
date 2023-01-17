@@ -24,6 +24,8 @@ require 'tasm/operations/atomic/bwand'
 require 'tasm/operations/atomic/bwor'
 require 'tasm/operations/atomic/swap'
 require 'tasm/operations/atomic/over'
+require 'tasm/operations/atomic/rev3'
+require 'tasm/operations/atomic/rev4'
 require 'tasm/operations/atomic/syscall3'
 require 'tasm/operations/atomic/syscall1'
 require 'tasm/operations/unreferenced/do'
@@ -63,6 +65,8 @@ class LexerOperationLookupTable
     'put' => PutOperation,
     'mem' => MemOperation,
     'load' => LoadOperation,
+    'rev3' => Rev3Operation,
+    'rev4' => Rev4Operation,
     'write' => WriteOperation,
     'syscall1' => Syscall1Operation,
     'syscall3' => Syscall3Operation

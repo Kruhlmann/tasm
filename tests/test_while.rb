@@ -1,4 +1,4 @@
-require_relative "./case"
+require_relative './case'
 
 class WhileTestCase < TestCase
   def self.source

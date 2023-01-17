@@ -1,0 +1,4 @@
+sub create_file
+    rev3
+    85 syscall3
+marine

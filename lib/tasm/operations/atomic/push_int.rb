@@ -8,7 +8,7 @@ class PushIntOperation < ArgOperation
 
   def asm_instruction(_operation_index, _)
     <<~EOS
-      push qword #{@argument}
+      push #{@argument}
     EOS
   end
 

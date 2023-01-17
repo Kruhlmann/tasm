@@ -13,9 +13,6 @@ class CrossReferencer
         reference_stack.append(operation_index)
       elsif operation.is_a? UnreferencedSubOperation
         reference_stack.append(operation_index)
-        p reference_stack
-        p instructions[operation_index]
-        p 'there it is'
       elsif operation.is_a? WhileOperation
         reference_stack.append(operation_index)
       elsif operation.is_a? LiteralOperation
@@ -37,7 +34,7 @@ class CrossReferencer
       elsif operation.is_a? EndIfOperation
         prev_reference = reference_stack.pop
         raise ReferenceStackEmpty if prev_reference.nil?
-        raise UnexpectedSymbolError, 'end' unless instructions[prev_reference].is_a? UnreferencedOperation
+        raise UnexpectedSymbolError, 'endif' unless instructions[prev_reference].is_a? UnreferencedOperation
 
         instructions[prev_reference] = instructions[prev_reference].reference_to(operation_index)
       elsif operation.is_a? UnreferencedDoOperation

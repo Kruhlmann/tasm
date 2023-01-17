@@ -1,8 +1,7 @@
-sub do_push
-    1
-marine
+include std.math
 
 sub main
-    do_push
-    put
+    8 -8 mul put
+    8 4 div
+    0 60 syscall1
 marine

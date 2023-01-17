@@ -7,8 +7,6 @@ class MarineOperation < Operation
 
   def asm_instruction(_operation_index, _)
     <<~EOS
-      mov rsp, rbp
-      pop rbp
       ret
     EOS
   end

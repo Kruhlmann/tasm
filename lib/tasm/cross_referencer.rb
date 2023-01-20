@@ -23,6 +23,7 @@ class CrossReferencer
           instructions[prev_reference] = SubOperation.new(operation.read_argument)
         else
           instructions[operation_index] = CallOperation.new(operation.read_argument)
+          reference_stack.push prev_reference
         end
       elsif operation.is_a? UnreferencedElseOperation
         prev_reference = reference_stack.pop

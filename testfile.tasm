@@ -1,7 +1,6 @@
 include std.math
 
 sub main
-    8 -8 mul put
-    8 4 div
-    0 60 syscall1
+    1024 2 div put
+    14 60 syscall1
 marine

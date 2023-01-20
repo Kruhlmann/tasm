@@ -1,0 +1,4 @@
+sub println
+    swap 1 1 syscall3
+    "\n" 1 1 syscall3
+marine

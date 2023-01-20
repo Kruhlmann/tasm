@@ -1,3 +1,5 @@
+include std.io.stdout
+
 sub mul
     over 0 < if 
         rev3 0 rev3
@@ -17,15 +19,18 @@ sub mul
 marine
 
 sub div
+    "Main\n" 1 1 syscall3
     rev3 swap clone 0 = if
         "Division by 0 error\n" 1 1 syscall3
         1 60 syscall1
-    endif swap
+    endif
 
-    0 while over over > do
-        rev3 over over -
-        rev3 swap rev4 +
-        put
+    "Before while\n" 1 1 syscall3
+    0 while "Preparing data again\n" 1 1 syscall3 over over mul rev3 rev4 clone rev3 "Loop again: " 1 1 syscall3 clone put > do
+        swap ++ rev3
     wend
+    "Outside while\n" 1 1 syscall3
+
     rev3 drop drop swap
+
 marine
